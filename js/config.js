@@ -9,7 +9,7 @@
    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycb.../exec";
    ===================================================================== */
 
-const SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL";   // <-- PASTE YOUR URL HERE
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwr0Tk9ITElOrTvfOO_jcvj0AX608lRgyzIu53ALGOm2Mxnf_yoqlgSdou8Ls0F3ityEg/exec";   // <-- PASTE YOUR URL HERE
 
 /* Note: the Google Sheet ID is NOT here. It lives only inside
    google-apps-script/Code.gs, so the website never sees it. */
