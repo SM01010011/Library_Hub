@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#241b4d">
+<title>Membership – Library Hub</title>
+<meta name="description" content="Student, Faculty and Guest membership at Library Hub: fees, borrowing limits and borrowing duration.">
+<meta name="author" content="Library Hub">
+<link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="index.html"><svg width="28" height="28" viewBox="0 0 28 28" role="img" aria-label="Library Hub logo"><rect width="28" height="28" rx="7" fill="#6d4aff"/><rect x="6" y="8" width="4" height="12" rx="1" fill="#fff"/><rect x="12" y="6" width="4" height="14" rx="1" fill="#f2a900"/><rect x="18" y="9" width="4" height="11" rx="1" fill="#ff5c7a"/></svg>Library Hub</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
+    <nav id="nav-menu" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="spaces.html">Spaces</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="membership.html">Membership</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a class="nav-admin" href="admin.html">Admin Portal</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero page-hero" aria-labelledby="page-h">
+  <div class="inner"><h1 id="page-h">Membership</h1><p>Three kinds of membership, one library. Here is what each one includes.</p></div>
+</section>
+
+<main id="main">
+  <section class="card" aria-labelledby="plans-h">
+    <h2 id="plans-h">Choose your category</h2>
+    <p class="lead">Membership is informational for now. To check or update your membership, visit the help desk.</p>
+    <div class="plans">
+      <article class="plan-card featured">
+        <h3>Student</h3>
+        <p class="price">Free <small></small></p>
+        <dl>
+          <div><dt>Books you can borrow</dt><dd>4</dd></div>
+          <div><dt>Borrowing period</dt><dd>14 days</dd></div>
+          <div><dt>Seat bookings per day</dt><dd>2</dd></div>
+        </dl>
+        <p>Seat booking is free for students.</p>
+      </article>
+      <article class="plan-card">
+        <h3>Faculty</h3>
+        <p class="price">Free <small></small></p>
+        <dl>
+          <div><dt>Books you can borrow</dt><dd>8</dd></div>
+          <div><dt>Borrowing period</dt><dd>30 days</dd></div>
+          <div><dt>Seat bookings per day</dt><dd>4</dd></div>
+        </dl>
+        <p>The longest borrowing period and the most bookings a day.</p>
+      </article>
+      <article class="plan-card">
+        <h3>Guest</h3>
+        <p class="price">₹100 <small>/ month</small></p>
+        <dl>
+          <div><dt>Books you can borrow</dt><dd>1</dd></div>
+          <div><dt>Borrowing period</dt><dd>3 days</dd></div>
+          <div><dt>Seat bookings per day</dt><dd>1</dd></div>
+        </dl>
+        <p>Guests need a valid ID to book. One slot per day.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="card" aria-labelledby="cmp-h">
+    <h2 id="cmp-h">Compare side by side</h2>
+    <div class="tw"><table>
+      <thead>
+        <tr><th scope="col" rowspan="2">Member</th><th scope="colgroup" colspan="2">Borrowing</th><th scope="col" rowspan="2">Bookings per day</th><th scope="col" rowspan="2">Fee</th></tr>
+        <tr><th scope="col">Books</th><th scope="col">Days</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Student</th><td>4</td><td>14</td><td>2</td><td>Free</td></tr>
+        <tr><th scope="row">Faculty</th><td>8</td><td>30</td><td>4</td><td>Free</td></tr>
+        <tr><th scope="row">Guest</th><td>1</td><td>3</td><td>1</td><td>₹100 / month</td></tr>
+      </tbody>
+    </table></div>
+    <div class="btns"><a class="btn" href="booking.html">Book a seat</a><a class="btn ghost" href="contact.html">Ask the library</a></div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="fcols">
+    <div><h3>Library Hub</h3><p>Book seats, rooms and equipment before you arrive.</p></div>
+    <div><h3>Quick links</h3><a href="booking.html">Book a seat</a><a href="membership.html">Membership</a><a href="contact.html">Contact</a><a href="admin.html">Admin Portal</a></div>
+    <div><h3>Visit us</h3><address>Central Library, Main Campus<br>Mon–Fri 08:00–20:00<br>Sat 09:00–17:00</address></div>
+  </div>
+  <small>© <span id="year">2026</span> Library Hub.</small>
+</footer>
+
+<a class="top" href="#top" aria-label="Back to top">↑</a>
+<script src="js/main.js"></script>
+</body>
+</html>

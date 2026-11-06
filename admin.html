@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#241b4d">
+<meta name="robots" content="noindex">
+<title>Admin Dashboard – Library Hub</title>
+<link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin">
+
+<header class="admin-top">
+  <div class="row">
+    <a class="brand" href="index.html"><svg width="28" height="28" viewBox="0 0 28 28" role="img" aria-label="Library Hub logo"><rect width="28" height="28" rx="7" fill="#6d4aff"/><rect x="6" y="8" width="4" height="12" rx="1" fill="#fff"/><rect x="12" y="6" width="4" height="14" rx="1" fill="#f2a900"/><rect x="18" y="9" width="4" height="11" rx="1" fill="#ff5c7a"/></svg>Library Hub</a>
+    <span class="badge">Admin · view only</span>
+    <a class="home-link" href="index.html">Back to website</a>
+    <button class="btn light" type="button" id="refresh-btn"><span class="spinner" style="border-color:rgba(109,74,255,.3);border-top-color:#6d4aff" aria-hidden="true"></span><span class="label">Refresh</span></button>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Dashboard sections">
+  <div class="row" role="tablist">
+    <button class="tab" role="tab" data-tab="overview" aria-selected="true" type="button">Overview</button>
+    <button class="tab" role="tab" data-tab="bookings" aria-selected="false" type="button">Bookings</button>
+    <button class="tab" role="tab" data-tab="contacts" aria-selected="false" type="button">Messages</button>
+    <button class="tab" role="tab" data-tab="memberships" aria-selected="false" type="button">Memberships</button>
+  </div>
+</nav>
+
+<main class="admin-main" id="main">
+  <div id="load-alert" class="alert" role="alert"></div>
+
+  <!-- A. Overview -->
+  <section class="panel active" id="panel-overview" aria-labelledby="ov-h">
+    <div class="panel-head"><h2 id="ov-h">Overview</h2><span class="loaded-at"></span></div>
+    <div class="stats">
+      <div class="stat"><span class="num" id="stat-bookings">–</span><span class="what">Total bookings</span></div>
+      <div class="stat"><span class="num" id="stat-contacts">–</span><span class="what">Contact messages</span></div>
+      <div class="stat"><span class="num" id="stat-students">–</span><span class="what">Student memberships</span><span class="sub" id="sub-students"></span></div>
+      <div class="stat"><span class="num" id="stat-faculty">–</span><span class="what">Faculty memberships</span><span class="sub" id="sub-faculty"></span></div>
+      <div class="stat"><span class="num" id="stat-guests">–</span><span class="what">Guest memberships</span><span class="sub" id="sub-guests"></span></div>
+    </div>
+    <p class="note">This dashboard only shows records. All numbers are counted from your Google Sheet each time the page loads or you press Refresh.
+      This demo page has no password, so anyone who knows its address can open it. Do not use it with real personal data without adding proper protection.</p>
+  </section>
+
+  <!-- B. Bookings -->
+  <section class="panel" id="panel-bookings" aria-labelledby="bk-h">
+    <div class="panel-head">
+      <h2 id="bk-h">Booking records</h2>
+      <button class="btn" type="button" id="dl-bookings">Download Bookings CSV</button>
+    </div>
+    <div class="card">
+      <div class="toolbar">
+        <label>Student name<input type="text" id="b-name" placeholder="Search by name"></label>
+        <label>Registration number<input type="text" id="b-reg" placeholder="Search by number" inputmode="numeric"></label>
+        <label>Booking date<input type="date" id="b-date"></label>
+        <button class="btn ghost full" type="button" id="b-clear">Clear filters</button>
+      </div>
+      <p class="count" id="b-count" aria-live="polite"></p>
+      <div class="tw"><table class="stack"><thead><tr><th scope="col">Booking ID</th><th scope="col">Student name</th><th scope="col">Registration no.</th><th scope="col">Email</th><th scope="col">Phone</th><th scope="col">Department</th><th scope="col">Date</th><th scope="col">Time slot</th><th scope="col">Seat</th><th scope="col">People</th></tr></thead><tbody id="b-body"><tr><td class="skeleton" colspan="10">Loading records…</td></tr></tbody></table></div>
+    </div>
+  </section>
+
+  <!-- C. Contacts -->
+  <section class="panel" id="panel-contacts" aria-labelledby="ct-h">
+    <div class="panel-head">
+      <h2 id="ct-h">Contact submissions</h2>
+      <button class="btn" type="button" id="dl-contacts">Download Contacts CSV</button>
+    </div>
+    <div class="card">
+      <div class="toolbar"><label class="full">Name or email<input type="text" id="c-search" placeholder="Search by name or email"></label></div>
+      <p class="count" id="c-count" aria-live="polite"></p>
+      <div class="tw"><table class="stack"><thead><tr><th scope="col">Message ID</th><th scope="col">Name</th><th scope="col">Email</th><th scope="col">Phone</th><th scope="col">Subject</th><th scope="col">Message</th><th scope="col">Submitted</th></tr></thead><tbody id="c-body"><tr><td class="skeleton" colspan="7">Loading records…</td></tr></tbody></table></div>
+    </div>
+  </section>
+
+  <!-- D. Memberships -->
+  <section class="panel" id="panel-memberships" aria-labelledby="mb-h">
+    <div class="panel-head">
+      <h2 id="mb-h">Membership overview</h2>
+      <button class="btn" type="button" id="dl-memberships">Download Memberships CSV</button>
+    </div>
+    <div class="card">
+      <p class="count" id="m-count" aria-live="polite"></p>
+      <div class="tw"><table class="stack"><thead><tr><th scope="col">Membership ID</th><th scope="col">Name</th><th scope="col">Registration no.</th><th scope="col">Email</th><th scope="col">Type</th><th scope="col">Start date</th><th scope="col">Expiry date</th><th scope="col">Status</th></tr></thead><tbody id="m-body"><tr><td class="skeleton" colspan="8">Loading records…</td></tr></tbody></table></div>
+    </div>
+  </section>
+</main>
+
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

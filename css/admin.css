@@ -1,0 +1,74 @@
+/* =====================================================================
+   admin.css – extra styles for the admin dashboard (loads AFTER style.css)
+   Phones: tables become stacked cards. Laptops: normal tables.
+   ===================================================================== */
+body.admin{background:var(--bg)}
+
+/* Top bar */
+.admin-top{position:sticky;top:0;z-index:50;background:#241b4d;color:#fff;padding-top:env(safe-area-inset-top,0px)}
+.admin-top .row{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1rem;max-width:76rem;margin:0 auto;padding:.7rem 1.2rem}
+.admin-top .brand{margin-right:auto}
+.badge{padding:.15rem .75rem;border-radius:2rem;background:rgba(255,255,255,.16);font-size:.78rem;font-weight:600}
+.admin-top .btn{min-height:2.5rem;padding:.4rem 1rem;font-size:.9rem}
+.admin-top .home-link{color:#d9d2ff;font-size:.9rem;text-decoration:none}
+.admin-top .home-link:hover{color:#fff;text-decoration:underline}
+
+/* Tabs */
+.tabs{background:#fff;border-bottom:.1rem solid var(--line)}
+.tabs .row{display:flex;gap:.3rem;max-width:76rem;margin:0 auto;padding:0 1.2rem;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab{flex:0 0 auto;min-height:3rem;padding:.6rem 1rem;border:0;border-bottom:.2rem solid transparent;background:none;font:600 .95rem "Poppins",sans-serif;color:var(--muted);cursor:pointer;white-space:nowrap}
+.tab:hover{color:var(--violet)}
+.tab[aria-selected="true"]{color:var(--violet);border-bottom-color:var(--violet)}
+
+/* Content area */
+.admin-main{display:block;max-width:76rem;margin:0 auto;padding:1.4rem 1.2rem 3rem}
+.panel{display:none}
+.panel.active{display:block}
+.panel>.card+.card{margin-top:1.2rem}
+.panel-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.8rem;margin-bottom:1rem}
+.panel-head h2{margin:0;font-size:1.4rem}
+.panel-head p{margin:0}
+.loaded-at{font-size:.82rem;color:var(--muted)}
+
+/* Overview numbers */
+.stats{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr))}
+.stat{padding:1.2rem;border-radius:var(--radius);background:#fff;box-shadow:var(--shadow);border-top:.25rem solid var(--violet)}
+.stat:nth-child(2){border-top-color:var(--pink)}
+.stat:nth-child(3){border-top-color:var(--teal)}
+.stat:nth-child(4){border-top-color:var(--gold)}
+.stat:nth-child(5){border-top-color:#9b7bff}
+.stat .num{display:block;font:700 2.3rem/1.1 "Playfair Display",serif;color:var(--ink)}
+.stat .what{display:block;margin-top:.3rem;font-size:.9rem;font-weight:500;color:var(--muted)}
+.stat .sub{display:block;font-size:.78rem;color:var(--muted)}
+
+/* Search / filter toolbar */
+.toolbar{display:grid;gap:.7rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin-bottom:1rem}
+.toolbar label{display:flex;flex-direction:column;gap:.25rem;font-size:.8rem;font-weight:500;color:var(--muted)}
+.toolbar .btn{align-self:end}
+.count{margin:0 0 .6rem;font-size:.85rem;color:var(--muted)}
+.empty{padding:2rem 1rem;text-align:center;color:var(--muted)}
+.nowrap{white-space:nowrap}
+.msg-cell{min-width:16rem;max-width:26rem;white-space:pre-wrap;word-break:break-word}
+.status-pill{display:inline-block;padding:.1rem .7rem;border-radius:2rem;font-size:.75rem;font-weight:600;background:var(--bg);color:var(--muted)}
+.status-pill.active{background:#d9f5ee;color:#0b6e60}
+.status-pill.expired{background:#ffe0e6;color:#b01e45}
+.note{margin-top:1.2rem;font-size:.82rem;color:var(--muted)}
+.skeleton{padding:2rem;text-align:center;color:var(--muted)}
+
+/* Phones: each table row becomes a card, labels come from data-label */
+@media (max-width:760px){
+  .admin-main{padding:1rem .8rem 3rem}
+  .admin-top .home-link{display:none}
+  table.stack,table.stack tbody,table.stack tr,table.stack td{display:block;width:100%}
+  table.stack thead{position:absolute;left:-9999px}
+  table.stack tr{margin-bottom:.8rem;padding:.4rem .9rem;border:.1rem solid var(--line);border-radius:.8rem;background:#fff!important}
+  table.stack td{display:flex;justify-content:space-between;gap:1rem;padding:.45rem 0;border-bottom:.1rem solid var(--line);text-align:right;word-break:break-word}
+  table.stack td:last-child{border-bottom:0}
+  table.stack td::before{content:attr(data-label);flex:0 0 38%;font-size:.78rem;font-weight:600;text-align:left;color:var(--muted)}
+  .msg-cell{min-width:0;max-width:none}
+  .toolbar{grid-template-columns:1fr}
+  .tab{padding:.6rem .8rem;font-size:.9rem}
+  .nowrap{white-space:normal}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat .num{font-size:1.9rem}
+}

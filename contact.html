@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#241b4d">
+<title>Contact – Library Hub</title>
+<meta name="description" content="Contact Library Hub: send a message, see opening hours and find the library.">
+<meta name="author" content="Library Hub">
+<link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="index.html"><svg width="28" height="28" viewBox="0 0 28 28" role="img" aria-label="Library Hub logo"><rect width="28" height="28" rx="7" fill="#6d4aff"/><rect x="6" y="8" width="4" height="12" rx="1" fill="#fff"/><rect x="12" y="6" width="4" height="14" rx="1" fill="#f2a900"/><rect x="18" y="9" width="4" height="11" rx="1" fill="#ff5c7a"/></svg>Library Hub</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
+    <nav id="nav-menu" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="spaces.html">Spaces</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="membership.html">Membership</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a class="nav-admin" href="admin.html">Admin Portal</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero page-hero" aria-labelledby="page-h">
+  <div class="inner"><h1 id="page-h">Contact the library</h1><p>Ask a question, send feedback or report a problem. We will reply by email.</p></div>
+</section>
+
+<main id="main">
+  <section class="card" id="form-card" aria-labelledby="contact-h">
+    <h2 id="contact-h">Send us a message</h2>
+    <p class="muted small">Fields marked <span style="color:var(--pink)">*</span> are required.</p>
+    <div id="form-alert" class="alert" role="alert"></div>
+    <form id="contact-form" novalidate>
+      <div class="fgrid">
+        <label class="f "><span>Name <span class="req" aria-hidden="true">*</span></span><input type="text" name="name" maxlength="60" autocomplete="name" placeholder="Your name"><span class="err" data-for="name" role="alert"></span></label>
+        <label class="f "><span>Email <span class="req" aria-hidden="true">*</span></span><input type="email" name="email" maxlength="80" autocomplete="email" placeholder="you@example.com"><span class="err" data-for="email" role="alert"></span></label>
+        <label class="f "><span>Phone (optional)</span><input type="tel" name="phone" inputmode="numeric" maxlength="10" autocomplete="tel-national" placeholder="10 digits"><span class="err" data-for="phone" role="alert"></span></label>
+        <label class="f "><span>Subject <span class="req" aria-hidden="true">*</span></span><input type="text" name="subject" maxlength="100" placeholder="What is this about?"><span class="err" data-for="subject" role="alert"></span></label>
+        <label class="f span2"><span>Message <span class="req" aria-hidden="true">*</span></span><textarea name="message" rows="5" maxlength="1000" placeholder="How can we help?"></textarea><span class="err" data-for="message" role="alert"></span></label>
+      </div>
+      <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+      <label class="inline"><input type="checkbox" name="consent"> I agree to be contacted about this request.</label>
+      <span class="err" data-for="consent" role="alert"></span>
+      <div class="btns"><button class="btn" type="submit" id="submit-btn"><span class="spinner" aria-hidden="true"></span><span class="label">Send message</span></button></div>
+    </form>
+  </section>
+
+  <section class="card confirm" id="confirmation" hidden aria-live="polite">
+    <div class="tick" aria-hidden="true">✓</div>
+    <h2>Message sent</h2>
+    <p>Thank you. We will reply within two working days.</p>
+    <p>Your message ID</p>
+    <div class="code" id="c-id"></div>
+    <div class="btns"><button class="btn" type="button" id="send-another">Send another message</button><a class="btn ghost" href="index.html">Back to home</a></div>
+  </section>
+
+  <section class="card" aria-labelledby="details-h">
+    <h2 id="details-h">Library details</h2>
+    <div class="info">
+      <div>
+        <h3>Find us</h3>
+        <address>Central Library, Main Campus<br>Help desk: 1<sup>st</sup> floor</address>
+        <p style="margin-top:1rem">Email: libraryhub@email.com<br>Phone: 1800-226-744</p>
+      </div>
+      <div>
+        <h3>Opening hours</h3>
+        <ul>
+          <li>Monday – Friday: 08:00 – 20:00</li>
+          <li>Saturday: 09:00 – 17:00 (reading zones only)</li>
+          <li>Sunday: closed</li>
+          <li>Exam weeks: 07:00 – 23:00</li>
+        </ul>
+        <p class="small muted">Hours may change on public holidays.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" aria-labelledby="faq-h">
+    <h2 id="faq-h">Frequently asked questions</h2>
+    <details><summary>Can I cancel a booking?</summary><p>Yes. Contact the help desk before your slot starts.</p></details>
+    <details><summary>What if I am late?</summary><p>Seats are released after 15 minutes without a check-in.</p></details>
+    <details><summary>Can guests book seats?</summary><p>Guests may book one slot per day with a valid ID.</p></details>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="fcols">
+    <div><h3>Library Hub</h3><p>Book seats, rooms and equipment before you arrive.</p></div>
+    <div><h3>Quick links</h3><a href="booking.html">Book a seat</a><a href="membership.html">Membership</a><a href="contact.html">Contact</a><a href="admin.html">Admin Portal</a></div>
+    <div><h3>Visit us</h3><address>Central Library, Main Campus<br>Mon–Fri 08:00–20:00<br>Sat 09:00–17:00</address></div>
+  </div>
+  <small>© <span id="year">2026</span> Library Hub.</small>
+</footer>
+
+<a class="top" href="#top" aria-label="Back to top">↑</a>
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+<script src="js/contact.js"></script>
+</body>
+</html>
