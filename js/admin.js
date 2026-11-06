@@ -1,18 +1,13 @@
-/* =====================================================================
-   admin.js – read-only admin dashboard (admin.html)
-   - Loads bookings, contacts and memberships from Google Sheets (via Apps Script)
-   - Shows overview numbers, searchable tables and CSV downloads
-   - There are NO edit / delete / approve functions on purpose.
-   ===================================================================== */
 
-// All records loaded from the Sheet are kept here
+
+
 var records = { bookings: [], contacts: [], memberships: [] };
 var isLoading = false;
 
 var loadAlert = document.getElementById("load-alert");
 var refreshButton = document.getElementById("refresh-btn");
 
-/* ---------- 1. Tabs ---------- */
+
 var tabs = document.querySelectorAll(".tab");
 var panels = document.querySelectorAll(".panel");
 
@@ -28,9 +23,9 @@ tabs.forEach(function (tab) {
   tab.addEventListener("click", function () { showTab(tab.dataset.tab); });
 });
 
-/* ---------- 2. Load data from Google Sheets ---------- */
+
 async function loadData() {
-  if (isLoading) return;                       // ignore clicks while already loading
+  if (isLoading) return;                       
   isLoading = true;
   setButtonLoading(refreshButton, true, "Loading…");
   hideAlert(loadAlert);
@@ -47,14 +42,14 @@ async function loadData() {
     renderAll();
   } catch (error) {
     showAlert(loadAlert, "error", error.message);
-    renderAll();                               // shows "no records" instead of staying blank
+    renderAll();                               
   } finally {
     isLoading = false;
     setButtonLoading(refreshButton, false);
   }
 }
 
-/* ---------- 3. Show everything ---------- */
+
 function renderAll() {
   renderOverview();
   renderBookings();
@@ -62,7 +57,7 @@ function renderAll() {
   renderMemberships();
 }
 
-// Counts the memberships of one type (Student / Faculty / Guest)
+
 function countMembers(type) {
   return records.memberships.filter(function (row) {
     return row.type.trim().toLowerCase() === type;
@@ -87,14 +82,14 @@ function renderOverview() {
   document.getElementById("sub-guests").textContent = countActive(guests) + " active";
 }
 
-// Builds the table body from a list of rows.  columns = [[key, "Heading"], ...]
+
 function buildRows(rows, columns, emptyMessage) {
   if (rows.length === 0) {
     return '<tr><td class="empty" colspan="' + columns.length + '">' + escapeHtml(emptyMessage) + "</td></tr>";
   }
   return rows.map(function (row) {
     var cells = columns.map(function (column) {
-      var text = escapeHtml(row[column[0]]);                  // escape: never inject raw HTML
+      var text = escapeHtml(row[column[0]]);                  
       var cssClass = "";
       if (column[0] === "message") cssClass = ' class="msg-cell"';
       if (["bookingId", "bookingDate", "timeSlot", "phone", "messageId", "membershipId", "submittedAt", "startDate", "expiryDate"].indexOf(column[0]) !== -1) cssClass = ' class="nowrap"';
@@ -107,7 +102,7 @@ function buildRows(rows, columns, emptyMessage) {
   }).join("");
 }
 
-/* ---------- Bookings ---------- */
+
 var bookingColumns = [
   ["bookingId", "Booking ID"], ["name", "Student name"], ["regNo", "Registration no."],
   ["email", "Email"], ["phone", "Phone"], ["department", "Department"],
@@ -117,7 +112,7 @@ var bookingColumns = [
 function renderBookings() {
   var nameSearch = document.getElementById("b-name").value.trim().toLowerCase();
   var regSearch = document.getElementById("b-reg").value.trim().toLowerCase();
-  var dateFilter = document.getElementById("b-date").value;           // YYYY-MM-DD or ""
+  var dateFilter = document.getElementById("b-date").value;           
 
   var shown = records.bookings.filter(function (row) {
     return row.name.toLowerCase().indexOf(nameSearch) !== -1 &&
@@ -130,7 +125,7 @@ function renderBookings() {
     "Showing " + shown.length + " of " + records.bookings.length + " bookings";
 }
 
-/* ---------- Contacts ---------- */
+
 var contactColumns = [
   ["messageId", "Message ID"], ["name", "Name"], ["email", "Email"], ["phone", "Phone"],
   ["subject", "Subject"], ["message", "Message"], ["submittedAt", "Submitted"]
@@ -146,7 +141,7 @@ function renderContacts() {
     "Showing " + shown.length + " of " + records.contacts.length + " messages";
 }
 
-/* ---------- Memberships ---------- */
+
 var membershipColumns = [
   ["membershipId", "Membership ID"], ["name", "Name"], ["regNo", "Registration no."],
   ["email", "Email"], ["type", "Type"], ["startDate", "Start date"],
@@ -159,7 +154,7 @@ function renderMemberships() {
   document.getElementById("m-count").textContent = records.memberships.length + " membership records";
 }
 
-/* ---------- 4. Search boxes (they re-draw the table while typing) ---------- */
+
 ["b-name", "b-reg", "b-date"].forEach(function (id) {
   document.getElementById(id).addEventListener("input", renderBookings);
 });
@@ -171,9 +166,9 @@ document.getElementById("b-clear").addEventListener("click", function () {
   renderBookings();
 });
 
-/* ---------- 5. CSV download ---------- */
-// Makes one CSV cell safe. Quotes are doubled, and a leading = + - @ gets a ' in front
-// so Excel never runs the text as a formula ("CSV injection").
+
+
+
 function toCsvCell(value) {
   var text = String(value == null ? "" : value);
   if (/^[=+\-@\t\r]/.test(text)) text = "'" + text;

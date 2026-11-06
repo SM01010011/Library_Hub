@@ -1,16 +1,11 @@
-/* =====================================================================
-   main.js – code shared by all pages
-   1. Mobile menu + highlight of the current page
-   2. Helper functions used by booking.js, contact.js and admin.js
-      (talking to Google Apps Script, showing errors, escaping text)
-   ===================================================================== */
 
-/* ---------- 1. Navigation ---------- */
+
+
 (function setupNavigation() {
   var toggleButton = document.querySelector(".nav-toggle");
   var menu = document.getElementById("nav-menu");
 
-  // Open / close the menu on phones
+  
   if (toggleButton && menu) {
     toggleButton.addEventListener("click", function () {
       var isOpen = menu.classList.toggle("open");
@@ -19,21 +14,21 @@
     });
   }
 
-  // Mark the link of the page we are on (for example booking.html)
+  
   var currentPage = location.pathname.split("/").pop().replace(".html", "") || "index";
   document.querySelectorAll("#nav-menu a").forEach(function (link) {
     var linkPage = link.getAttribute("href").replace(".html", "");
     if (linkPage === currentPage) link.setAttribute("aria-current", "page");
   });
 
-  // Footer year
+  
   var yearSpan = document.getElementById("year");
   if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 })();
 
-/* ---------- 2. Helpers ---------- */
 
-// True only when the owner has pasted a real URL into js/config.js
+
+
 function isScriptConfigured() {
   return typeof SCRIPT_URL === "string" && SCRIPT_URL.indexOf("https://script.google.com/") === 0;
 }
@@ -41,19 +36,12 @@ function isScriptConfigured() {
 var NOT_CONFIGURED_MESSAGE =
   "The website is not connected to Google Sheets yet. Paste your Apps Script Web App URL into js/config.js.";
 
-/* Sends a request to Google Apps Script and returns the JSON answer.
-   Throws an Error with a friendly message when something goes wrong.
 
-   WHY text/plain?  A normal "application/json" POST makes the browser send an
-   extra "preflight" (OPTIONS) request first, and Google Apps Script cannot
-   answer that. "text/plain" is treated as a *simple request*, so there is no
-   preflight and the call works from Vercel. The JSON is still sent as text,
-   and Apps Script reads it with JSON.parse(). */
 async function requestScript(url, options) {
   if (!isScriptConfigured()) throw new Error(NOT_CONFIGURED_MESSAGE);
 
   var controller = new AbortController();
-  var timer = setTimeout(function () { controller.abort(); }, 25000);   // give up after 25 s
+  var timer = setTimeout(function () { controller.abort(); }, 25000);   
   options = options || {};
   options.signal = controller.signal;
 
@@ -73,12 +61,12 @@ async function requestScript(url, options) {
   try {
     return JSON.parse(text);
   } catch (error) {
-    // Usually means the Web App is not shared with "Anyone" (Google sent a login page)
+    
     throw new Error("Unexpected reply from the server. Check that the Web App is deployed with access set to 'Anyone'.");
   }
 }
 
-// POST: used for saving data (bookings, messages)
+
 function postToScript(payload) {
   return requestScript(SCRIPT_URL, {
     method: "POST",
@@ -87,12 +75,12 @@ function postToScript(payload) {
   });
 }
 
-// GET: used ONLY for reading data (seat availability, admin records)
+
 function getFromScript(params) {
   return requestScript(SCRIPT_URL + "?" + new URLSearchParams(params).toString());
 }
 
-// Stops user-typed text from being treated as HTML (prevents script injection)
+
 function escapeHtml(value) {
   return String(value == null ? "" : value)
     .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")

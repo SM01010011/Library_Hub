@@ -1,12 +1,9 @@
-/* =====================================================================
-   contact.js – logic for contact.html
-   Validate -> send to Google Apps Script -> show success or error
-   ===================================================================== */
+
 
 var form = document.getElementById("contact-form");
 var alertBox = document.getElementById("form-alert");
 var submitButton = document.getElementById("submit-btn");
-var isSubmitting = false;                       // stops double submissions
+var isSubmitting = false;                       
 
 function validateForm() {
   clearFieldErrors(form);
@@ -42,7 +39,7 @@ form.addEventListener("submit", async function (event) {
     phone: form.elements.phone.value.trim(),
     subject: form.elements.subject.value.trim(),
     message: form.elements.message.value.trim(),
-    website: form.elements.website.value        // hidden spam-trap field
+    website: form.elements.website.value        
   };
 
   isSubmitting = true;

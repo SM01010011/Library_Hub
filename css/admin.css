@@ -1,10 +1,7 @@
-/* =====================================================================
-   admin.css – extra styles for the admin dashboard (loads AFTER style.css)
-   Phones: tables become stacked cards. Laptops: normal tables.
-   ===================================================================== */
+
 body.admin{background:var(--bg)}
 
-/* Top bar */
+
 .admin-top{position:sticky;top:0;z-index:50;background:#241b4d;color:#fff;padding-top:env(safe-area-inset-top,0px)}
 .admin-top .row{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1rem;max-width:76rem;margin:0 auto;padding:.7rem 1.2rem}
 .admin-top .brand{margin-right:auto}
@@ -13,14 +10,14 @@ body.admin{background:var(--bg)}
 .admin-top .home-link{color:#d9d2ff;font-size:.9rem;text-decoration:none}
 .admin-top .home-link:hover{color:#fff;text-decoration:underline}
 
-/* Tabs */
+
 .tabs{background:#fff;border-bottom:.1rem solid var(--line)}
 .tabs .row{display:flex;gap:.3rem;max-width:76rem;margin:0 auto;padding:0 1.2rem;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tab{flex:0 0 auto;min-height:3rem;padding:.6rem 1rem;border:0;border-bottom:.2rem solid transparent;background:none;font:600 .95rem "Poppins",sans-serif;color:var(--muted);cursor:pointer;white-space:nowrap}
 .tab:hover{color:var(--violet)}
 .tab[aria-selected="true"]{color:var(--violet);border-bottom-color:var(--violet)}
 
-/* Content area */
+
 .admin-main{display:block;max-width:76rem;margin:0 auto;padding:1.4rem 1.2rem 3rem}
 .panel{display:none}
 .panel.active{display:block}
@@ -30,7 +27,7 @@ body.admin{background:var(--bg)}
 .panel-head p{margin:0}
 .loaded-at{font-size:.82rem;color:var(--muted)}
 
-/* Overview numbers */
+
 .stats{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr))}
 .stat{padding:1.2rem;border-radius:var(--radius);background:#fff;box-shadow:var(--shadow);border-top:.25rem solid var(--violet)}
 .stat:nth-child(2){border-top-color:var(--pink)}
@@ -41,7 +38,7 @@ body.admin{background:var(--bg)}
 .stat .what{display:block;margin-top:.3rem;font-size:.9rem;font-weight:500;color:var(--muted)}
 .stat .sub{display:block;font-size:.78rem;color:var(--muted)}
 
-/* Search / filter toolbar */
+
 .toolbar{display:grid;gap:.7rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin-bottom:1rem}
 .toolbar label{display:flex;flex-direction:column;gap:.25rem;font-size:.8rem;font-weight:500;color:var(--muted)}
 .toolbar .btn{align-self:end}
@@ -55,7 +52,7 @@ body.admin{background:var(--bg)}
 .note{margin-top:1.2rem;font-size:.82rem;color:var(--muted)}
 .skeleton{padding:2rem;text-align:center;color:var(--muted)}
 
-/* Phones: each table row becomes a card, labels come from data-label */
+
 @media (max-width:760px){
   .admin-main{padding:1rem .8rem 3rem}
   .admin-top .home-link{display:none}
